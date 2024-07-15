@@ -120,11 +120,19 @@ int main() {
                         {
                             currentTrack = currentTrack->next;
                         }
+                        if(currentTrack->next == nullptr)
+                        {
+                            playlist.reverse();
+                        }
                     } 
                     if (prevButton.getGlobalBounds().contains(mousePos.x, mousePos.y)) {
                         if(currentTrack->prev != nullptr)
                         {
                             currentTrack = currentTrack->prev;
+                        }
+                        if(currentTrack->prev == nullptr)
+                        {
+                            playlist.reverse();
                         }
                     }
                 
