@@ -22,5 +22,5 @@ To compile the program, use the following command:
 ```sh
 g++ -o myProgram main.cpp -lsfml-graphics -lsfml-window -lsfml-system
 
-
+#
 ![Uploading Screen Shot 2024-07-15 at 1.32.58 AM.png…]()
