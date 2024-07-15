@@ -53,10 +53,10 @@ class Playlist {
                 return;
             }
             while (temp->next != nullptr) {
-                cout << temp->artist << "\n " << temp->album << "\n " << temp->title;
+                cout << temp->artist << "\n " << temp->title <<"\n ";
                 temp = temp->next;
             }
-            cout << temp->artist << "\n " << temp->album << "\n " << temp->title << endl;
+            cout << temp->artist << "\n "  << temp->title << endl;
         }
     
         Node* getHead() {
@@ -85,11 +85,15 @@ class Playlist {
         }
         
         Node* get()
-        {
-            current = head;
+        {   
+            if(current == nullptr)
+            {
+                current = head;
+            }
             return current; 
         }
-
+  
+      
         void reverse()
         {
             Node * current =  head;

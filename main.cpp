@@ -30,7 +30,7 @@
 using namespace std;
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(1100, 800), "Music Player");
+    sf::RenderWindow window(sf::VideoMode(1000, 1000), "Music Player");
     sf::Texture coverTexture;
     if (!coverTexture.loadFromFile("recourse/image.jpg")) {
         cerr << "Failed to load image" << endl;
@@ -38,8 +38,7 @@ int main() {
     }
 
     sf::Sprite coverSprite;
-    coverSprite.setTexture(coverTexture);
-    coverSprite.setPosition(10, 50);  
+
 
     sf::Font font;
     if (!font.loadFromFile("recourse/font.ttf")) {
@@ -53,31 +52,109 @@ int main() {
     text.setFont(font);
     text.setCharacterSize(30);
     text.setString("");
-    text.setFillColor(sf::Color::White);
+    text.setFillColor(sf::Color::Black);
     sf::FloatRect spriteBounds = coverSprite.getLocalBounds();
+    
     float textYPosition = coverSprite.getPosition().y + spriteBounds.height + 10;  
     text.setPosition(10, textYPosition); 
     
     Playlist playlist;
-    playlist.addTrack("HowSweet", "NewJeans", "NewJeans");
-    playlist.printList();
-    cout << playlist.get()->album;
+    playlist.addTrack("How Sweet", "NewJeans", "recourse/image.jpg");
+    playlist.addTrack("Heya", "IVE", "recourse/IVE.jpg");
+    playlist.addTrack("Armageddon", "Aespa", "recourse/exam.png");
+    if (!coverTexture.loadFromFile(playlist.get()->album)) {
+        cerr << "Failed to load initial image" << endl;
+        return -1;
+    }
+
+    sf::RectangleShape nextButton(sf::Vector2f(150, 50));
+    nextButton.setFillColor(sf::Color::White);
+    nextButton.setPosition(600, 700); 
+
+    sf::Text nextButtonText;
+    nextButtonText.setFont(font);
+    nextButtonText.setString("->");
+    nextButtonText.setCharacterSize(24);
+    nextButtonText.setFillColor(sf::Color::Black); 
+    nextButtonText.setPosition(
+        nextButton.getPosition().x + 30, 
+        nextButton.getPosition().y + 10
+    );
+
+    sf::RectangleShape prevButton(sf::Vector2f(150, 50));
+    prevButton.setFillColor(sf::Color::White);
+    prevButton.setPosition(50, 700); 
+
+    sf::Text prevButtonText;
+    prevButtonText.setFont(font);
+    prevButtonText.setString("<-");
+    prevButtonText.setCharacterSize(24);
+    prevButtonText.setFillColor(sf::Color::Black); 
+    prevButtonText.setPosition(
+        prevButton.getPosition().x + 10, 
+        prevButton.getPosition().y + 10
+    );
+
+    
+
+    Node* currentTrack = playlist.get();
+    text.setString(currentTrack->artist + " - " + currentTrack->title);
+    if (!coverTexture.loadFromFile(currentTrack->album)) {
+        cerr << "Failed to load image: " << currentTrack->album << endl;
+    } 
+    else{
+        coverSprite.setTexture(coverTexture);
+    }
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();
+       
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (event.mouseButton.button == sf::Mouse::Left) {
+                    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+
+                    if (nextButton.getGlobalBounds().contains(mousePos.x, mousePos.y)) {
+                         if(currentTrack->next != nullptr)
+                        {
+                            currentTrack = currentTrack->next;
+                        }
+                    } 
+                    if (prevButton.getGlobalBounds().contains(mousePos.x, mousePos.y)) {
+                        if(currentTrack->prev != nullptr)
+                        {
+                            currentTrack = currentTrack->prev;
+                        }
+                    }
+                
+                    if(currentTrack){
+                        string artist = currentTrack->artist;
+                        string title = currentTrack->title;
+                        string album = currentTrack->album;
+                        text.setString(artist + " - " + title);
+                    }
+
+                    if (!coverTexture.loadFromFile(currentTrack->album)) {
+                        cerr << "Failed to load image: " << currentTrack->album << endl;
+                    } else {
+                        coverSprite.setTexture(coverTexture);
+                    }
+                
+
+                
+                }
+            }
+
         }
 
-        window.clear(); 
-        if (playlist.get() != nullptr) {
-            string album = playlist.get()->album; 
-            string title = playlist.get()->title;
-            text.setString(album + "-" + title);
-            window.draw(text);
-        }
+        window.clear();
+        window.draw(coverSprite);
         window.draw(text);
-        window.draw(coverSprite);   
+        window.draw(nextButton);
+        window.draw(nextButtonText);
+        window.draw(prevButton);
+        window.draw(prevButtonText);
         window.display();
     }
 
