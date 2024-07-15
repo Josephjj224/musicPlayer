@@ -1,5 +1,5 @@
 # Music Player Implementation Using Doubly Linked List
-
+![Uploading Screen Shot 2024-07-15 at 1.32.58 AM.png…]()
 This project involves the development of a basic music player that utilizes a doubly linked list to manage the playlist. The primary goal of using a doubly linked list in this music player is to enhance navigation through the playlist, allowing seamless transitions between tracks both forwards and backwards.
 
 ## Key Features
@@ -22,5 +22,4 @@ To compile the program, use the following command:
 ```sh
 g++ -o myProgram main.cpp -lsfml-graphics -lsfml-window -lsfml-system
 
-#
-![Uploading Screen Shot 2024-07-15 at 1.32.58 AM.png…]()
+
