@@ -1,0 +1,14 @@
+# Object files
+*.o
+
+# Compiled Dynamic libraries
+*.so
+
+# Executable files
+*.out
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes

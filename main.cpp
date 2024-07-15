@@ -15,7 +15,7 @@ int main() {
 
     sf::Sprite coverSprite;
     coverSprite.setTexture(coverTexture);
-    coverSprite.setPosition(10, 50);  // 위치 지정
+    coverSprite.setPosition(10, 50);  
 
     sf::Font font;
     if (!font.loadFromFile("recourse/font.ttf")) {
@@ -31,7 +31,7 @@ int main() {
     text.setString("");
     text.setFillColor(sf::Color::White);
     sf::FloatRect spriteBounds = coverSprite.getLocalBounds();
-    float textYPosition = coverSprite.getPosition().y + spriteBounds.height + 10;  // 스프라이트 하단에 여백 추가
+    float textYPosition = coverSprite.getPosition().y + spriteBounds.height + 10;  
     text.setPosition(10, textYPosition); 
     
     Playlist playlist;
