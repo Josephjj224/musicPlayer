@@ -1,4 +1,4 @@
-# Music Player Implementation Using Doubly Linked List
+# Music Player Implementation Using Doubly Linked List - Just For Fun 
 
 
 ![Screen Shot 2024-07-15 at 3 31 19 AM](https://github.com/user-attachments/assets/4d71f97a-b85a-466e-9042-d4c112e08004)
