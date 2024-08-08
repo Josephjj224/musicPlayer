@@ -1,7 +1,6 @@
 # Music Player Implementation Using Doubly Linked List 
 
-
-![Screen Shot 2024-07-15 at 3 31 19 AM](https://github.com/user-attachments/assets/4d71f97a-b85a-466e-9042-d4c112e08004)
+![Screen Shot 2024-08-07 at 9 25 32 PM](https://github.com/user-attachments/assets/02e9e941-a95d-4aa2-b6dd-8335607563cd)
 
 This project involves the development of a basic music player that utilizes a doubly linked list to manage the playlist. The primary goal of using a doubly linked list in this music player is to enhance navigation through the playlist, allowing seamless transitions between tracks both forwards and backwards.
 
