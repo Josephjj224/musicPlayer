@@ -30,9 +30,9 @@
 using namespace std;
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(1000, 1000), "Music Player");
+    sf::RenderWindow window(sf::VideoMode(800, 1000), "Music Player");
     sf::Texture coverTexture;
-    if (!coverTexture.loadFromFile("recourse/image.jpg")) {
+    if (!coverTexture.loadFromFile("recourse/music.png")) {
         cerr << "Failed to load image" << endl;
         return -1;
     }
@@ -52,16 +52,16 @@ int main() {
     text.setFont(font);
     text.setCharacterSize(30);
     text.setString("");
-    text.setFillColor(sf::Color::Black);
+    text.setFillColor(sf::Color::White);
     sf::FloatRect spriteBounds = coverSprite.getLocalBounds();
     
     float textYPosition = coverSprite.getPosition().y + spriteBounds.height + 10;  
     text.setPosition(10, textYPosition); 
     
     Playlist playlist;
-    playlist.addTrack("How Sweet", "NewJeans", "recourse/image.jpg");
-    playlist.addTrack("Heya", "IVE", "recourse/IVE.jpg");
-    playlist.addTrack("Armageddon", "Aespa", "recourse/exam.png");
+    playlist.addTrack("Bohemian Rhapsody", "Queen", "recourse/Queen.jpg");
+    playlist.addTrack("1989", "Taylor Swift", "recourse/taylor.jpeg");
+    playlist.addTrack("Too Sweet", "Hozier", "recourse/hozier.jpeg");
     if (!coverTexture.loadFromFile(playlist.get()->album)) {
         cerr << "Failed to load initial image" << endl;
         return -1;
